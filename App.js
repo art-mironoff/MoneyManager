@@ -1,14 +1,24 @@
-import React, {Fragment} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import LoginPage from './src/pages/Login/container';
+import ExpensesPage from './src/pages/Expenses/container';
+import IncomesPage from './src/pages/Incomes/container';
+import ListPage from './src/pages/List/container';
 
-const App = () => {
-  return (
-    <Fragment>
-      <Text>Hello world!</Text>
-    </Fragment>
-  );
-};
+const MainNavigator = createStackNavigator(
+  {
+    Home: {screen: LoginPage},
+    Expenses: {screen: ExpensesPage},
+    Incomes: {screen: IncomesPage},
+    List: {screen: ListPage},
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  },
+);
 
-const styles = StyleSheet.create({});
+const App = createAppContainer(MainNavigator);
 
 export default App;
